@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@Model int
+@{
+    string Viewbagstr = ViewBag.ABC;
+    string Mes = ViewData["Message"].ToString();
+    SanPham sp = (WebApp_MVC.Models.SanPham) ViewData["SanPham"];
+}
+@{
+    int sodem = 1;
+}
+
+    <h1>Đây là trang test</h1>
+    <p> Đây là số đếm: @sodem</p>
+    <p>@Viewbagstr</p>
+<p>@Mes</p>
+<p>@Model</p>
+<p> @sp.ID | @sp.TenSanPham | @sp.Soluong | @sp.Gia | 
+    @if (sp.TrangThai == 1) {
+        <p> Con Hang </p>
+    }
+    else 
+    {
+        <p> Het Hang</p>
+    }
+     </p>
+@{
+
+}
