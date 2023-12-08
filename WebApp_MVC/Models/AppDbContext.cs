@@ -23,6 +23,7 @@ namespace WebApp_MVC.Models
 
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
+        public virtual DbSet<NhanVien> NhanViens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,10 +1,17 @@
+using Microsoft.Extensions.Options;
 using WebApp_MVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddSession(o =>
+{
+    o.Cookie.Name = "TestSession";
+    o.IdleTimeout = TimeSpan.FromSeconds(30);
+    o.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -20,7 +27,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(
