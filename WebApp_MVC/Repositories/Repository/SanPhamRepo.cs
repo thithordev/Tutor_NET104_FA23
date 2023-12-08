@@ -1,4 +1,5 @@
-﻿using WebApp_MVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApp_MVC.Models;
 using WebApp_MVC.Repositories.Interface;
 
 namespace WebApp_MVC.Repositories.Repository
@@ -13,12 +14,12 @@ namespace WebApp_MVC.Repositories.Repository
 
         public List<SanPham> GetAll()
         {
-            return _context.SanPhams.ToList();
+            return _context.SanPhams.Include(x => x.DanhMuc).ToList();
         }
 
         public SanPham GetByID(Guid id)
         {
-            var obj = _context.SanPhams.FirstOrDefault(x => x.ID == id);
+            var obj = _context.SanPhams.Include(x => x.DanhMuc).FirstOrDefault(x => x.ID == id);
             return obj;
         }
 
@@ -79,6 +80,7 @@ namespace WebApp_MVC.Repositories.Repository
                     obj.Gia = sanPham.Gia;
                     obj.Soluong = sanPham.Soluong;
                     obj.TrangThai = sanPham.TrangThai;
+                    obj.IDDanhMuc = sanPham.IDDanhMuc;
 
                     _context.SanPhams.Update(obj);
                     _context.SaveChanges();

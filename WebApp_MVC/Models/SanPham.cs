@@ -14,6 +14,6 @@ namespace WebApp_MVC.Models
         public int Soluong { get; set; }
         public int TrangThai { get; set; }
         [ForeignKey("IDDanhMuc")]
-        public virtual DanhMuc DanhMuc { get; set; }
+        public virtual DanhMuc? DanhMuc { get; set; }
     }
 }

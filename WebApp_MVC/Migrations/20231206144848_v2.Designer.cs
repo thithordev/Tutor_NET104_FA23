@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp_MVC.Models;
 
@@ -11,9 +12,11 @@ using WebApp_MVC.Models;
 namespace WebApp_MVC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206144848_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,20 +43,6 @@ namespace WebApp_MVC.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("DanhMuc", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = new Guid("35c0128c-cebd-4501-afc4-74a686be8018"),
-                            TenDanhMuc = "Đồ ăn",
-                            TrangThai = 1
-                        },
-                        new
-                        {
-                            ID = new Guid("c031e6c3-4074-4236-ad30-3e83acd5b770"),
-                            TenDanhMuc = "Quần áo",
-                            TrangThai = 1
-                        });
                 });
 
             modelBuilder.Entity("WebApp_MVC.Models.SanPham", b =>
@@ -79,6 +68,10 @@ namespace WebApp_MVC.Migrations
 
                     b.Property<int>("TrangThai")
                         .HasColumnType("int");
+
+                    b.Property<string>("abc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
